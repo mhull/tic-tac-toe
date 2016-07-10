@@ -1,0 +1,38 @@
+h1 {
+	text-align: center;
+}
+
+#status {
+	text-align: center;
+}
+
+#grid {
+
+	margin: auto;
+	padding: 1em;
+
+	max-width: calc( 100vh - 10em );
+}
+
+.square {
+	box-sizing: border-box;
+	position: relative;
+}
+
+.mark {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	width: 1em;
+	height: 1em;
+}
+
+.mark.X {
+	color: green;
+}
+.mark.O {
+	color: blue;
+}
