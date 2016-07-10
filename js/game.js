@@ -42,7 +42,7 @@ var game = (function() {
 		}
 
 		else {
-			this.player = ++game.player % 2;
+			this.player = ++this.player % 2;
 			this.setStatus( 'Player ' + ( this.player + 1 ) + '\'s turn.' );
 		}
 	};

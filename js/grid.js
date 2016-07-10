@@ -22,20 +22,10 @@ var grid = (function( m, n ) {
 		document.body.appendChild( _this.o );
 
 		this.setupSquares();
-		this.bindEvents();
 
 	}; // end: draw()
 
 	_this.setupSquares = function() {
-
-		// set up the {m x n} array of squares
-		/*
-		this.squares = new Array( this.m )
-			.fill( 
-				new Array( this.n )
-		);
-		*/
-
 
 		// loop through squares and instantiate
 		for( i = 0; i < this.m; i++ ) {
@@ -55,10 +45,6 @@ var grid = (function( m, n ) {
 		}
 
 	}; // end: setupSquares
-
-	_this.bindEvents = function() {
-
-	};
 
 	return _this;
 });
