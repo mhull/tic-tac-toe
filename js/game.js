@@ -2,6 +2,7 @@ var game = (function() {
 
 	var _this = {};
 	_this.isOver = false;
+	_this.winner = null;
 
 	_this.grid = grid();
 
@@ -41,6 +42,10 @@ var game = (function() {
 			this.end();
 		}
 
+		else if( this.grid.isFull() ) {
+			this.end( 0 );
+		}
+
 		else {
 			this.player = ++this.player % 2;
 			this.setStatus( 'Player ' + ( this.player + 1 ) + '\'s turn.' );
@@ -71,6 +76,7 @@ var game = (function() {
 			}
 
 			if( inARow === 3 ) {
+				this.winner = this.player;
 				return true;
 			}
 		}
@@ -86,7 +92,14 @@ var game = (function() {
 
 	_this.end = function() {
 		this.isOver = true;
-		this.setStatus( 'Player ' + ( game.player + 1 ) + ' wins.' );
+
+		if( null !== this.winner ) {
+			this.setStatus( 'Player ' + ( this.winner + 1 ) + ' wins.' );
+		}
+
+		else {
+			this.setStatus( 'Game ended in a tie.' );
+		}
 	};
 
 	return _this;

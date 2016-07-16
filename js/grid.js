@@ -46,5 +46,25 @@ var grid = (function( m, n ) {
 
 	}; // end: setupSquares
 
+	_this.isFull = function() {
+
+		for( var i = 0; i < this.squares.length; i++ ) {
+
+			var row = this.squares[ i ];
+
+			for( var j = 0; j < row.length; j++ ) {
+
+				var square = row[ j ];
+
+				if( null === square.status ) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+
+	} // end: isFull()
+
 	return _this;
 });
