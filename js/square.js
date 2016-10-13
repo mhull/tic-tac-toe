@@ -10,7 +10,7 @@ var square = function( x, y ) {
 	_this.draw = function() {
 
 		_this.o = document.createElement( 'div' );
-		_this.o.className = 'pure-u-1-3 square';
+		_this.o.className = 'square';
 
 		/**
 		 * Draw borders

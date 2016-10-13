@@ -12,11 +12,14 @@ h1 {
 	padding: 1em;
 
 	max-width: calc( 100vh - 10em );
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .square {
 	box-sizing: border-box;
 	position: relative;
+	width: 33%;
 }
 
 .mark {

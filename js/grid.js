@@ -17,7 +17,6 @@ var grid = (function( m, n ) {
 
 		this.o = document.createElement( 'div' );
 		this.o.id = 'grid';
-		this.o.className = 'pure-g';
 
 		document.body.appendChild( _this.o );
 
