@@ -65,5 +65,11 @@ var grid = (function( m, n ) {
 
 	} // end: isFull()
 
+	_this.getSquare = function( x, y ) {
+
+		var row = this.squares[ x ];
+		return row[ y ];
+	}
+
 	return _this;
 });

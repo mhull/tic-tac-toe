@@ -40,6 +40,11 @@ var square = function( x, y ) {
 
 	}; // end: draw()
 
+	_this.setStyle = function( property, value ) {
+		this.o.style[ property ] = value;
+		return this;
+	}
+
 	_this.placeMark = function() {
 
 		this.status = game.player;
@@ -99,7 +104,7 @@ var square = function( x, y ) {
 
 			game.play();
 		} );
-	};
+	}; // bindEvents()
 
 	return _this;
 };

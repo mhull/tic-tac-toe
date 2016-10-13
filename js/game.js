@@ -25,6 +25,8 @@ var game = (function() {
 		[ [2, 0], [2,1], [2,2] ],
 	];
 
+	_this.winningSquares = [];
+
 	/**
 	 * Start the game
 	 */
@@ -62,12 +64,7 @@ var game = (function() {
 
 			for( var j = 0; j < combo.length; j++ ) {
 
-				var point = combo[ j ];
-				var x = point[ 0 ];
-				var y = point[ 1 ];
-
-				var row = this.grid.squares[ x ];
-				var _square = row[ y ];
+				var _square = this.grid.getSquare( combo[j][0], combo[j][1] );
 
 				if( this.player === _square.status ) {
 
@@ -77,6 +74,9 @@ var game = (function() {
 
 			if( inARow === 3 ) {
 				this.winner = this.player;
+				combo.forEach( function( value, index, array ) {
+					_this.winningSquares.push( _this.grid.getSquare( value[0], value[1] ) );
+				} );
 				return true;
 			}
 		}
@@ -95,11 +95,45 @@ var game = (function() {
 
 		if( null !== this.winner ) {
 			this.setStatus( 'Player ' + ( this.winner + 1 ) + ' wins.' );
+			this.highlightWinningSquares();
 		}
 
 		else {
 			this.setStatus( 'Game ended in a tie.' );
 		}
+	};
+
+	_this.highlightWinningSquares = function() {
+		if( ! this.isOver ) {
+			return;
+		}
+
+		var borderColor = _this.getPlayerColor( _this.winner );
+
+		this.winningSquares.forEach( function( square, index, array ) {
+
+			square.setStyle( 'borderColor', borderColor );
+			square.setStyle( 'borderWidth', '3px' );
+
+			// perceived bottom (actually top) border fix
+			if( square.row < 2 ) {
+				_this.grid.getSquare( square.row + 1, square.col )
+					.setStyle( 'borderTopColor', borderColor )
+					.setStyle( 'borderTopWidth', '3px' );
+			}
+
+			// perceived right (actually left) border fix
+			if( square.col < 2 ) {
+				_this.grid.getSquare( square.row, square.col + 1 )
+					.setStyle( 'borderLeftColor', borderColor )
+					.setStyle( 'borderLeftWidth', '3px' );
+			}
+
+		} );
+	};
+
+	_this.getPlayerColor = function( player ) {
+		return ( 0 === player ) ? 'green' : 'blue';
 	};
 
 	return _this;
